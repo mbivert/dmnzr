@@ -1,0 +1,9 @@
+PROG = dmnzr
+SRCS = xalloc.c dmnzr.c
+RM = /bin/rm
+CFLAGS += -O2 -g -Wall -ansi -pedantic -W
+MAN=$(PROG).8
+MKMANZ=no
+OBJ = $(SRC:.c=.o)
+
+.include <bsd.prog.mk>

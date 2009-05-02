@@ -1,0 +1,35 @@
+.Dd March 26, 2009
+.Os
+.Dt dmnzr 8
+.Sh NAME
+.Nm dmnzr
+.Nd daemonize a program
+.Sh SYNOPSIS
+.Nm
+.Op Fl l Op Fl t Ar sec
+.Op Fl f Ar file
+.Fl e Ar program
+.Nm
+.Fl h
+.Sh DESCRIPTION
+.Nm
+accept both short and long (gnu-style) command line option.
+.Bl -tag -width indent
+.It Fl l, Fl Fl loop
+Run the program in a loop. May be usefull for logs analysers.
+.It Fl t, Fl Fl time
+When called with
+.Fl l
+, set the time (second) between two calls.
+Default time is set to 3 seconds.
+.It Fl f, Fl Fl file Ar file
+Redirect output of
+.Ar program
+to
+.Ar file
+.It Fl e, Fl Fl exec Ar program
+Execute
+.Ar program
+.It Fl h, Fl Fl help
+Display a short description of the command line arguments.
+.El

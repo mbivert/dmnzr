@@ -1,0 +1,29 @@
+dmnzr(8)                NetBSD System Manager's Manual                dmnzr(8)
+
+NNAAMMEE
+     ddmmnnzzrr -- daemonize a program
+
+SSYYNNOOPPSSIISS
+     ddmmnnzzrr [--ll [--tt _s_e_c]] [--ff _f_i_l_e] --ee _p_r_o_g_r_a_m
+     ddmmnnzzrr --hh
+
+DDEESSCCRRIIPPTTIIOONN
+     ddmmnnzzrr accept both short and long (gnu-style) command line option.
+
+     --ll,, ----lloooopp
+             Run the program in a loop. May be usefull for logs analysers.
+
+     --tt,, ----ttiimmee
+             When called with --ll , set the time (second) between two calls.
+             Default time is set to 3 seconds.
+
+     --ff,, ----ffiillee _f_i_l_e
+             Redirect output of _p_r_o_g_r_a_m to _f_i_l_e
+
+     --ee,, ----eexxeecc _p_r_o_g_r_a_m
+             Execute _p_r_o_g_r_a_m
+
+     --hh,, ----hheellpp
+             Display a short description of the command line arguments.
+
+NetBSD 4.0.1                    March 26, 2009                    NetBSD 4.0.1
