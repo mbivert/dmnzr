@@ -70,7 +70,7 @@ daemonize (void) {
    fprintf (stderr, "Started with pid: %d.\n", getpid ());
 
    /*
-    * Get ride of i/o.
+    * Get rid of i/o.
     */
 #if 0
    freopen ("/dev/null", "r", stdin);
@@ -219,7 +219,7 @@ main (int argc, char **argv) {
    }
 
    if (cmd == NULL) {
-      fprintf (stderr, "No command specify.\n");
+      fprintf (stderr, "No command specified.\n");
       help (exe_name);
       return EXIT_FAILURE;
    }
