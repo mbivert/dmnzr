@@ -1,4 +1,4 @@
-.Dd March 26, 2009
+.Dd January, 2012
 .Os
 .Dt dmnzr 8
 .Sh NAME
@@ -6,30 +6,21 @@
 .Nd daemonize a program
 .Sh SYNOPSIS
 .Nm
-.Op Fl l Op Fl t Ar sec
-.Op Fl f Ar file
-.Fl e Ar program
-.Nm
-.Fl h
+.Op Fl f logfile
+.Ar executable
 .Sh DESCRIPTION
-.Nm
-accept both short and long (gnu-style) command line option.
 .Bl -tag -width indent
-.It Fl l, Fl Fl loop
-Run the program in a loop. May be usefull for logs analysers.
-.It Fl t, Fl Fl time
-When called with
-.Fl l
-, set the time (second) between two calls.
-Default time is set to 3 seconds.
-.It Fl f, Fl Fl file Ar file
-Redirect output of
-.Ar program
+.It Fl f Ar logfile
+Log stdout and stderr of
+.Ar executable
 to
-.Ar file
-.It Fl e, Fl Fl exec Ar program
-Execute
-.Ar program
-.It Fl h, Fl Fl help
-Display a short description of the command line arguments.
-.El
+.Ar logfile
+.SH BUG
+As current working directory is never changed, the partition on which
+.Ar executable
+was launched will not be unmountable.
+It thus allows not to worry about giving absolute
+filenames to both
+.Nm
+and
+.Ar executable

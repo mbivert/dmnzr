@@ -1,15 +1,19 @@
-CC = gcc
-LD = $(CC)
+CC = cc
 CFLAGS = -ansi -Wall -W -O2 -pedantic -g
-LIBS =
+ROFF=/usr/bin/nroff
 TARGET = dmnzr
-OBJS = dmnzr.o xalloc.o
+OBJS = dmnzr.o
+
+all: $(TARGET) $(TARGET).cat8
+
+%.cat8: %.8
+	$(ROFF) -man $< > $@
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(LIBS)
 
 $(TARGET) : $(OBJS)
-	$(LD) $(OBJS) -o $@
+	$(CC) $(OBJS) -o $@
 
 clean:
-	@rm -vf $(OBJS) $(TARGET) *~
+	@rm -rf $(OBJS) $(TARGET) $(TARGET).cat8 *~

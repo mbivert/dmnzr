@@ -1,29 +1,16 @@
-dmnzr(8)                NetBSD System Manager's Manual                dmnzr(8)
+dmnzr(8)                  BSD System Manager's Manual                 dmnzr(8)
 
 NNAAMMEE
-     ddmmnnzzrr -- daemonize a program
+     ddmmnnzzrr — daemonize a program
 
 SSYYNNOOPPSSIISS
-     ddmmnnzzrr [--ll [--tt _s_e_c]] [--ff _f_i_l_e] --ee _p_r_o_g_r_a_m
-     ddmmnnzzrr --hh
+     ddmmnnzzrr [--ff --llooggffiillee] _e_x_e_c_u_t_a_b_l_e
 
 DDEESSCCRRIIPPTTIIOONN
-     ddmmnnzzrr accept both short and long (gnu-style) command line option.
+     --ff _l_o_g_f_i_l_e
+             Log stdout and stderr of _e_x_e_c_u_t_a_b_l_e to _l_o_g_f_i_l_e As current working
+             directory is never changed, the partition on which _e_x_e_c_u_t_a_b_l_e was
+             launched will not be unmountable.  It thus allows not to worry
+             about giving absolute filenames to both ddmmnnzzrr and _e_x_e_c_u_t_a_b_l_e
 
-     --ll,, ----lloooopp
-             Run the program in a loop. May be usefull for logs analysers.
-
-     --tt,, ----ttiimmee
-             When called with --ll , set the time (second) between two calls.
-             Default time is set to 3 seconds.
-
-     --ff,, ----ffiillee _f_i_l_e
-             Redirect output of _p_r_o_g_r_a_m to _f_i_l_e
-
-     --ee,, ----eexxeecc _p_r_o_g_r_a_m
-             Execute _p_r_o_g_r_a_m
-
-     --hh,, ----hheellpp
-             Display a short description of the command line arguments.
-
-NetBSD 4.0.1                    March 26, 2009                    NetBSD 4.0.1
+BSD                             January 5, 2013                            BSD
