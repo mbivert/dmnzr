@@ -9,9 +9,8 @@
 #include <unistd.h>
 
 #define DLOG "/tmp/dmnzr.log"
-#define PATH_MAX 256
 
-static char logfile[PATH_MAX];
+static char *logfile;
 
 static void
 help(char *argv0)
@@ -47,10 +46,6 @@ daemonize(void)
 		return -1;
 	}
 
-	/* ensure permission */
-	if (chmod(logfile, 0644) < 0)
-		fprintf(stderr, "can't write to %s\n", logfile);
-
 	/* log stdin & stdout */
 	freopen(logfile, "a", stdout);
 	freopen(logfile, "a", stderr);
@@ -66,27 +61,25 @@ main(int argc, char **argv)
 	char *executable;
 	int i;
 
-	strcpy(logfile, DLOG);
+	logfile = DLOG;
 
-	/* at least executable is required */
 	i = 1;
-	if (argc < i+1) {
-		help(argv[0]);
-		return 1;
-	}
+	/* at least an executable name is required */
+	if (argc < i+1)
+		goto help;
 
 	if (argv[i][0] == '-')
 	if (argv[i][1] == 'f') {
+		/* skip -f */
 		i++;
 		/* look for both logfile and executable */
-		if (argc < 4) {
-			help(argv[0]);
-			return 1;
-		}
-		strcpy(logfile, argv[i]);
+		if (argc < i+2)
+			goto help;
+		logfile = argv[i];
+		/* skip logfile */
+		i++;
 	}
-	/* skip '-f' or logfile */
-	i++;
+
 	executable = argv[i];
 
 	if (daemonize() < 0)
@@ -94,5 +87,9 @@ main(int argc, char **argv)
 
 	execvp(executable, argv+i);
 	perror("execvp");
+
 	return 3;
+help:
+	help(argv[0]);
+	return 1;
 }
